@@ -264,9 +264,137 @@ footer {
   .grid { grid-template-columns: 1fr; }
   .page-title { font-size: 26px; }
 }
+/* LOGIN */
+#login-screen {
+  position: fixed;
+  inset: 0;
+  background: #080808;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  flex-direction: column;
+  gap: 32px;
+}
+#login-screen.hidden { display: none; }
+.login-box {
+  background: #111;
+  border: 1px solid #1e1e1e;
+  border-radius: 24px;
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.login-logo {
+  text-align: center;
+}
+.login-logo-mark {
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(135deg, #d4a843, #a07830);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 22px;
+  color: #fff;
+  margin: 0 auto 12px;
+  box-shadow: 0 0 24px rgba(212,168,67,.3);
+}
+.login-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.3px;
+}
+.login-sub {
+  font-size: 13px;
+  color: #444;
+  margin-top: 2px;
+}
+.login-input {
+  width: 100%;
+  padding: 13px 16px;
+  background: #0d0d0d;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  letter-spacing: 4px;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+.login-input:focus { border-color: #d4a843; }
+.login-input.error { border-color: #ef4444; animation: shake 0.3s; }
+.login-btn {
+  width: 100%;
+  padding: 13px;
+  background: linear-gradient(135deg, #d4a843, #a07830);
+  border: none;
+  border-radius: 12px;
+  color: #000;
+  font-size: 14px;
+  font-weight: 800;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: opacity 0.2s, transform 0.1s;
+}
+.login-btn:hover { opacity: 0.9; }
+.login-btn:active { transform: scale(0.98); }
+.login-error {
+  font-size: 12px;
+  color: #ef4444;
+  text-align: center;
+  min-height: 16px;
+}
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
 </style>
 </head>
 <body>
+
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="login-logo-mark">A</div>
+      <div class="login-title">Aluwal</div>
+      <div class="login-sub">Panel interno — ingresá tu clave</div>
+    </div>
+    <input type="password" class="login-input" id="pwd" placeholder="••••" maxlength="20" />
+    <div class="login-error" id="login-err"></div>
+    <button class="login-btn" onclick="checkLogin()">Ingresar</button>
+  </div>
+</div>
+
+<script>
+function checkLogin() {
+  const val = document.getElementById('pwd').value;
+  const inp = document.getElementById('pwd');
+  const err = document.getElementById('login-err');
+  if (val === '1234') {
+    document.getElementById('login-screen').classList.add('hidden');
+    sessionStorage.setItem('aw_auth', '1');
+  } else {
+    inp.classList.add('error');
+    err.textContent = 'Clave incorrecta';
+    setTimeout(() => { inp.classList.remove('error'); inp.value = ''; }, 600);
+  }
+}
+document.getElementById('pwd').addEventListener('keydown', e => { if (e.key === 'Enter') checkLogin(); });
+if (sessionStorage.getItem('aw_auth') === '1') {
+  document.getElementById('login-screen').classList.add('hidden');
+}
+</script>
 
 <header>
   <div class="logo-mark">A</div>
