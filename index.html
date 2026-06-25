@@ -391,9 +391,6 @@ function checkLogin() {
   }
 }
 document.getElementById('pwd').addEventListener('keydown', e => { if (e.key === 'Enter') checkLogin(); });
-if (sessionStorage.getItem('aw_auth') === '1') {
-  document.getElementById('login-screen').classList.add('hidden');
-}
 </script>
 
 <header>
