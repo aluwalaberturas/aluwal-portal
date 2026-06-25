@@ -4,31 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aluwal — Panel de Apps</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #f2efe9;
-  --surf: #ffffff;
-  --brd: #ddd7ce;
-  --txt: #1c1814;
-  --txt2: #7a6e60;
-  --acc: #8b6420;
-  --acc-h: #6e4e18;
-  --acc-lt: #fdf3e0;
-  --grn: #2e7d50;
-  --grn-lt: #e8f5ee;
-  --sky: #1a6a9a;
-  --sky-lt: #e6f3fa;
-  --pur: #6b4eb0;
-  --pur-lt: #f0eafb;
-  --red: #b83030;
-  --red-lt: #fce8e8;
-}
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
   font-family: 'Inter', sans-serif;
-  background: var(--bg);
-  color: var(--txt);
+  background: #080808;
+  color: #f0f0f0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -36,177 +19,250 @@ body {
 
 /* HEADER */
 header {
-  background: #0f0f0f;
-  padding: 0 32px;
-  height: 60px;
+  background: #0d0d0d;
+  border-bottom: 1px solid #1f1f1f;
+  padding: 0 40px;
+  height: 64px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   position: sticky;
   top: 0;
   z-index: 100;
 }
 .logo-mark {
-  width: 32px;
-  height: 32px;
-  background: var(--acc);
-  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #d4a843, #a07830);
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 800;
-  font-size: 14px;
+  font-weight: 900;
+  font-size: 16px;
   color: #fff;
   letter-spacing: -0.5px;
+  box-shadow: 0 0 16px rgba(212,168,67,.25);
 }
 .logo-text {
   font-weight: 800;
-  font-size: 18px;
+  font-size: 19px;
   color: #fff;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.4px;
 }
-.logo-text span { color: var(--acc); }
+.logo-text span { color: #d4a843; }
 .logo-sub {
   font-size: 9px;
   font-weight: 600;
-  letter-spacing: 2px;
-  color: #666;
+  letter-spacing: 2.5px;
+  color: #444;
   text-transform: uppercase;
   margin-top: -2px;
 }
 .header-right {
   margin-left: auto;
   font-size: 12px;
-  color: #555;
+  color: #444;
+  letter-spacing: 0.3px;
 }
 
 /* MAIN */
 main {
   flex: 1;
-  padding: 48px 32px;
-  max-width: 1000px;
+  padding: 60px 40px;
+  max-width: 1040px;
   margin: 0 auto;
   width: 100%;
 }
 
+.page-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #d4a843;
+  margin-bottom: 10px;
+}
 .page-title {
-  font-size: 26px;
-  font-weight: 800;
-  color: var(--txt);
-  margin-bottom: 6px;
-  letter-spacing: -0.5px;
+  font-size: 32px;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 8px;
+  letter-spacing: -0.8px;
+  line-height: 1.1;
 }
 .page-sub {
   font-size: 14px;
-  color: var(--txt2);
-  margin-bottom: 40px;
+  color: #555;
+  margin-bottom: 48px;
 }
 
 /* GRID */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 }
 
 /* CARD */
 .card {
-  background: var(--surf);
-  border: 1px solid var(--brd);
-  border-radius: 16px;
-  padding: 28px 24px 24px;
+  background: #111;
+  border: 1px solid #1e1e1e;
+  border-radius: 20px;
+  padding: 32px 28px 26px;
   cursor: pointer;
   text-decoration: none;
   color: inherit;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  transition: all 0.18s ease;
+  gap: 20px;
+  transition: all 0.2s ease;
   position: relative;
   overflow: hidden;
 }
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(0,0,0,.1), 0 4px 8px rgba(0,0,0,.06);
-  border-color: var(--card-color);
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  background: radial-gradient(circle at 50% 0%, var(--glow), transparent 70%);
 }
+.card:hover {
+  border-color: var(--card-color);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(0,0,0,.5), 0 0 0 1px var(--card-color);
+}
+.card:hover::after { opacity: 1; }
+
+/* línea top */
 .card::before {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--card-color);
-  border-radius: 16px 16px 0 0;
+  top: 0; left: 20px; right: 20px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--card-color), transparent);
+  border-radius: 0 0 4px 4px;
+  opacity: 0.6;
+  transition: opacity 0.2s;
 }
+.card:hover::before { opacity: 1; }
 
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
 .card-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
   background: var(--card-bg);
+  border: 1px solid var(--card-border);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
+  font-size: 24px;
+}
+.card-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: var(--card-bg);
+  color: var(--card-color);
+  border: 1px solid var(--card-border);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
 }
 
-.card-body { flex: 1; }
 .card-title {
-  font-size: 17px;
-  font-weight: 700;
+  font-size: 19px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.3px;
   margin-bottom: 6px;
-  letter-spacing: -0.2px;
 }
 .card-desc {
   font-size: 13px;
-  color: var(--txt2);
-  line-height: 1.5;
+  color: #555;
+  line-height: 1.6;
 }
 
 .card-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 12px;
-  border-top: 1px solid var(--brd);
+  padding-top: 16px;
+  border-top: 1px solid #1e1e1e;
 }
-.card-tag {
-  font-size: 11px;
+.card-link {
+  font-size: 12px;
   font-weight: 600;
-  padding: 3px 10px;
-  border-radius: 20px;
-  background: var(--card-bg);
   color: var(--card-color);
-  letter-spacing: 0.3px;
+  letter-spacing: 0.2px;
 }
 .card-arrow {
-  font-size: 18px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--card-color);
-  font-weight: 600;
-  transition: transform 0.18s;
+  font-size: 14px;
+  transition: all 0.2s;
 }
-.card:hover .card-arrow { transform: translateX(4px); }
+.card:hover .card-arrow {
+  background: var(--card-color);
+  color: #000;
+  transform: translateX(3px);
+}
 
-/* COLORES POR CARD */
-.card-1 { --card-color: var(--acc); --card-bg: var(--acc-lt); }
-.card-2 { --card-color: var(--grn); --card-bg: var(--grn-lt); }
-.card-3 { --card-color: var(--sky); --card-bg: var(--sky-lt); }
-.card-4 { --card-color: var(--pur); --card-bg: var(--pur-lt); }
+/* COLORES */
+.card-1 {
+  --card-color: #d4a843;
+  --card-bg: rgba(212,168,67,.08);
+  --card-border: rgba(212,168,67,.15);
+  --glow: rgba(212,168,67,.06);
+}
+.card-2 {
+  --card-color: #4ade80;
+  --card-bg: rgba(74,222,128,.07);
+  --card-border: rgba(74,222,128,.14);
+  --glow: rgba(74,222,128,.05);
+}
+.card-3 {
+  --card-color: #38bdf8;
+  --card-bg: rgba(56,189,248,.07);
+  --card-border: rgba(56,189,248,.14);
+  --glow: rgba(56,189,248,.05);
+}
+.card-4 {
+  --card-color: #a78bfa;
+  --card-bg: rgba(167,139,250,.07);
+  --card-border: rgba(167,139,250,.14);
+  --glow: rgba(167,139,250,.05);
+}
 
 /* FOOTER */
 footer {
   text-align: center;
-  padding: 24px;
-  font-size: 12px;
-  color: var(--txt2);
-  border-top: 1px solid var(--brd);
+  padding: 28px;
+  font-size: 11px;
+  color: #2a2a2a;
+  border-top: 1px solid #141414;
+  letter-spacing: 0.5px;
 }
 
-@media (max-width: 600px) {
-  main { padding: 28px 16px; }
-  header { padding: 0 16px; }
-  .page-title { font-size: 22px; }
+@media (max-width: 680px) {
+  main { padding: 36px 20px; }
+  header { padding: 0 20px; }
   .grid { grid-template-columns: 1fr; }
+  .page-title { font-size: 26px; }
 }
 </style>
 </head>
@@ -218,63 +274,72 @@ footer {
     <div class="logo-text">Alu<span>wal</span></div>
     <div class="logo-sub">Panel interno</div>
   </div>
-  <div class="header-right">Aberturas de aluminio</div>
+  <div class="header-right">Aberturas de aluminio · Pilar</div>
 </header>
 
 <main>
-  <div class="page-title">Panel de aplicaciones</div>
+  <div class="page-eyebrow">Panel de aplicaciones</div>
+  <div class="page-title">Herramientas internas</div>
   <div class="page-sub">Seleccioná la app que necesitás usar</div>
 
   <div class="grid">
 
-    <!-- COTIZADOR INTERNO -->
     <a class="card card-1" href="cotizador/index.html" target="_blank">
-      <div class="card-icon">📋</div>
-      <div class="card-body">
+      <div class="card-top">
+        <div class="card-icon">📋</div>
+        <span class="card-badge">Interno</span>
+      </div>
+      <div>
         <div class="card-title">Cotizador Interno</div>
-        <div class="card-desc">Calculá presupuestos completos para clientes con todos los tipos de aberturas.</div>
+        <div class="card-desc">Armá presupuestos completos para clientes con todos los tipos de aberturas y accesorios.</div>
       </div>
       <div class="card-footer">
-        <span class="card-tag">USO INTERNO</span>
+        <span class="card-link">Abrir cotizador</span>
         <span class="card-arrow">→</span>
       </div>
     </a>
 
-    <!-- COTIZADOR WEB -->
     <a class="card card-3" href="https://aluwalaberturas.com/cotizador-para-web/" target="_blank">
-      <div class="card-icon">🌐</div>
-      <div class="card-body">
+      <div class="card-top">
+        <div class="card-icon">🌐</div>
+        <span class="card-badge">Público</span>
+      </div>
+      <div>
         <div class="card-title">Cotizador Web</div>
-        <div class="card-desc">Versión pública para que los clientes coticen aberturas desde su computadora o celular.</div>
+        <div class="card-desc">Versión para clientes — podés compartir el link para que coticen desde su celular o compu.</div>
       </div>
       <div class="card-footer">
-        <span class="card-tag">PÚBLICO</span>
+        <span class="card-link">Abrir cotizador web</span>
         <span class="card-arrow">→</span>
       </div>
     </a>
 
-    <!-- CALCULADORA DE CUOTAS -->
     <a class="card card-2" href="calculadora/index.html" target="_blank">
-      <div class="card-icon">🧮</div>
-      <div class="card-body">
+      <div class="card-top">
+        <div class="card-icon">🧮</div>
+        <span class="card-badge">Interno</span>
+      </div>
+      <div>
         <div class="card-title">Calculadora de Cuotas</div>
         <div class="card-desc">Calculá precios en cuotas con distintas tarjetas, intereses y planes de financiación.</div>
       </div>
       <div class="card-footer">
-        <span class="card-tag">USO INTERNO</span>
+        <span class="card-link">Abrir calculadora</span>
         <span class="card-arrow">→</span>
       </div>
     </a>
 
-    <!-- CONTROL DE VENTAS -->
     <a class="card card-4" href="ventas/index.html" target="_blank">
-      <div class="card-icon">📊</div>
-      <div class="card-body">
+      <div class="card-top">
+        <div class="card-icon">📊</div>
+        <span class="card-badge">Interno</span>
+      </div>
+      <div>
         <div class="card-title">Control de Ventas</div>
         <div class="card-desc">Seguimiento de presupuestos, estado de ventas y registros del equipo comercial.</div>
       </div>
       <div class="card-footer">
-        <span class="card-tag">USO INTERNO</span>
+        <span class="card-link">Abrir ventas</span>
         <span class="card-arrow">→</span>
       </div>
     </a>
@@ -283,7 +348,7 @@ footer {
 </main>
 
 <footer>
-  Aluwal Aberturas — Panel interno · Pilar, Buenos Aires
+  ALUWAL ABERTURAS · PANEL INTERNO · PILAR, BUENOS AIRES
 </footer>
 
 </body>
